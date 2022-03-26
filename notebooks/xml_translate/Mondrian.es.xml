@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<rules max_depth="1000">
+  <rule name="entry">
+    <call transforms="trans str" rule=""/>
+  </rule>
+  <rule name="mondrian">
+    <call transforms="trans str" rule=""/>
+    <call transforms="trans str" rule=""/>
+    <call transforms="trans str" rule=""/>
+    <call transforms="trans str" rule=""/>
+    <call transforms="trans str" rule=""/>
+    <call transforms="trans str" rule=""/>
+  </rule>
+  <rule name="a2" weight="2" max_depth="2" successor="d">
+    <call transforms="trans str" rule=""/>
+    <call transforms="trans str" rule=""/>
+  </rule>
+  <rule name="a2" weight="2" max_depth="2" successor="d">
+    <call transforms="trans str" rule=""/>
+    <call transforms="trans str" rule=""/>
+  </rule>
+  <rule name="a2">
+    <call transforms="trans str" rule=""/>
+  </rule>
+  <rule name="d">
+    <call transforms="trans str" rule=""/>
+  </rule>
+  <rule name="d">
+    <call transforms="trans str" rule=""/>
+  </rule>
+  <rule name="d">
+    <call transforms="trans str" rule=""/>
+  </rule>
+  <rule name="d" weight="2">
+    <call transforms="trans str" rule=""/>
+  </rule>
+  <rule name="square">
+    <instance transforms="trans str" shape=""/>
+    <instance transforms="trans str" shape=""/>
+    <instance transforms="trans str" shape=""/>
+    <instance transforms="trans str" shape=""/>
+    <instance transforms="trans str" shape=""/>
+  </rule>
+</rules>

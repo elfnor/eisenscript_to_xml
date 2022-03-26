@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<rules max_depth="100">
+  <rule name="entry">
+    <call transforms="trans str" rule=""/>
+  </rule>
+  <rule name="r1" weight="20">
+    <instance transforms="trans str" shape=""/>
+    <call transforms="trans str" rule=""/>
+  </rule>
+  <rule name="r1" weight="20">
+    <instance transforms="trans str" shape=""/>
+    <call transforms="trans str" rule=""/>
+  </rule>
+</rules>

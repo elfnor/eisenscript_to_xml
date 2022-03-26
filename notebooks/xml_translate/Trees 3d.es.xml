@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<rules max_depth="1000">
+  <rule name="entry">
+    <call transforms="trans str" rule=""/>
+    <call transforms="trans str" rule=""/>
+  </rule>
+  <rule name="seed" weight="100">
+    <instance transforms="trans str" shape=""/>
+    <call transforms="trans str" rule=""/>
+  </rule>
+  <rule name="seed" weight="100">
+    <instance transforms="trans str" shape=""/>
+    <call transforms="trans str" rule=""/>
+  </rule>
+  <rule name="seed" weight="100">
+    <instance transforms="trans str" shape=""/>
+    <call transforms="trans str" rule=""/>
+  </rule>
+  <rule name="seed" weight="6">
+    <call transforms="trans str" rule=""/>
+    <call transforms="trans str" rule=""/>
+  </rule>
+</rules>
