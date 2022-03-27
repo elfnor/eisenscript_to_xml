@@ -1,17 +1,17 @@
 <?xml version="1.0" ?>
 <rules max_depth="1000">
   <rule name="entry">
-    <call transforms="trans str" rule=""/>
+    <call transforms="" rule="['a', '0.3', 'sat', '0.5']"/>
   </rule>
   <rule name="grinder">
-    <call transforms="trans str" rule=""/>
+    <call transforms="" rule="['36', ['rz', '10'], ['y', '0.1']]"/>
   </rule>
   <rule name="xbox">
-    <instance transforms="trans str" shape=""/>
-    <call transforms="trans str" rule=""/>
+    <instance transforms="" shape="box"/>
+    <call transforms="" rule="[['s', '1.1']]"/>
   </rule>
   <rule name="xbox">
-    <instance transforms="trans str" shape=""/>
-    <call transforms="trans str" rule=""/>
+    <instance transforms="" shape="box"/>
+    <call transforms="" rule="[['s', '1.1']]"/>
   </rule>
 </rules>

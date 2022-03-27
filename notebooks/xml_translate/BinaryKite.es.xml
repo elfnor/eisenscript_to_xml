@@ -1,34 +1,34 @@
 <?xml version="1.0" ?>
 <rules max_depth="1000">
   <rule name="entry">
-    <call transforms="trans str" rule=""/>
+    <call transforms="" rule="['10', ['y', '1']]"/>
   </rule>
   <rule name="r1">
-    <call transforms="trans str" rule=""/>
-    <call transforms="trans str" rule=""/>
+    <call transforms="" rule="[['x', '1'], ['ry', '4']]"/>
+    <call transforms="" rule="xbox"/>
   </rule>
   <rule name="r1">
-    <call transforms="trans str" rule=""/>
-    <call transforms="trans str" rule=""/>
+    <call transforms="" rule="[['x', '1'], ['ry', '-4']]"/>
+    <call transforms="" rule="xbox"/>
   </rule>
   <rule name="r1">
-    <call transforms="trans str" rule=""/>
-    <call transforms="trans str" rule=""/>
+    <call transforms="" rule="[['x', '1'], ['rz', '-8'], ['s', '0.95']]"/>
+    <call transforms="" rule="xbox"/>
   </rule>
   <rule name="r1">
-    <call transforms="trans str" rule=""/>
-    <call transforms="trans str" rule=""/>
+    <call transforms="" rule="[['x', '1'], ['rz', '8'], ['s', '0.95']]"/>
+    <call transforms="" rule="xbox"/>
   </rule>
   <rule name="r2" max_depth="36">
-    <call transforms="trans str" rule=""/>
-    <call transforms="trans str" rule=""/>
+    <call transforms="" rule="[['ry', '1'], ['ry', '-13'], ['x', '1.2'], 'b', '0.99', 'h', '12']"/>
+    <call transforms="" rule="xbox"/>
   </rule>
   <rule name="xbox">
-    <instance transforms="trans str" shape=""/>
-    <instance transforms="trans str" shape=""/>
+    <instance transforms="" shape="grid"/>
+    <instance transforms="" shape="box"/>
   </rule>
   <rule name="xbox">
-    <instance transforms="trans str" shape=""/>
-    <instance transforms="trans str" shape=""/>
+    <instance transforms="" shape="grid"/>
+    <instance transforms="" shape="box"/>
   </rule>
 </rules>

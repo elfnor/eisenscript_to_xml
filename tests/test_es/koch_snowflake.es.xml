@@ -1,17 +1,17 @@
 <?xml version="1.0" ?>
 <rules max_depth="100">
   <rule name="entry">
-    <call transforms="trans str" rule=""/>
-    <call transforms="trans str" rule=""/>
-    <call transforms="trans str" rule=""/>
+    <call transforms="" rule="[['y', '0.866']]"/>
+    <call transforms="" rule="[['rz', '120'], ['y', '0.866']]"/>
+    <call transforms="" rule="[['rz', '240'], ['y', '0.866']]"/>
   </rule>
   <rule name="R1" max_depth="4" successor="unit">
-    <call transforms="trans str" rule=""/>
-    <call transforms="trans str" rule=""/>
-    <call transforms="trans str" rule=""/>
-    <call transforms="trans str" rule=""/>
+    <call transforms="" rule="[['x', '-1'], ['s', '0.333']]"/>
+    <call transforms="" rule="[['x', '-0.25'], ['y', '0.433'], ['rz', '60'], ['s', '0.333']]"/>
+    <call transforms="" rule="[['x', '0.25'], ['y', '0.433'], ['rz', '-60'], ['s', '0.333']]"/>
+    <call transforms="" rule="[['x', '1'], ['s', '0.333']]"/>
   </rule>
   <rule name="unit">
-    <instance transforms="trans str" shape=""/>
+    <instance transforms="" shape="line"/>
   </rule>
 </rules>

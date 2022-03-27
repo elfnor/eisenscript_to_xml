@@ -1,22 +1,22 @@
 <?xml version="1.0" ?>
 <rules max_depth="1000">
   <rule name="entry">
-    <call transforms="trans str" rule=""/>
-    <call transforms="trans str" rule=""/>
-    <call transforms="trans str" rule=""/>
-    <call transforms="trans str" rule=""/>
-    <call transforms="trans str" rule=""/>
+    <call transforms="" rule="R1"/>
+    <call transforms="" rule="[['x', '3'], ['s', '0.9']]"/>
+    <call transforms="" rule="[['y', '3'], ['s', '0.7']]"/>
+    <call transforms="" rule="[['y', '-3'], ['s', '0.6']]"/>
+    <call transforms="" rule="[['x', '-3'], ['s', '0.5']]"/>
   </rule>
   <rule name="R1" max_depth="30" successor="endrule">
-    <call transforms="trans str" rule=""/>
-    <call transforms="trans str" rule=""/>
+    <call transforms="" rule="[['z', '1'], ['ry', '6'], ['s', '0.91'], 'hue', '5', ['y', '0.01']]"/>
+    <call transforms="" rule="mesh"/>
   </rule>
   <rule name="R1" weight="0.2">
-    <call transforms="trans str" rule=""/>
-    <call transforms="trans str" rule=""/>
-    <call transforms="trans str" rule=""/>
+    <call transforms="" rule="[['z', '1'], ['ry', '6'], ['s', '0.99'], 'hue', '1']"/>
+    <call transforms="" rule="[['rz', '90']]"/>
+    <call transforms="" rule="mesh"/>
   </rule>
   <rule name="endrule">
-    <instance transforms="trans str" shape=""/>
+    <instance transforms="" shape="sphere"/>
   </rule>
 </rules>

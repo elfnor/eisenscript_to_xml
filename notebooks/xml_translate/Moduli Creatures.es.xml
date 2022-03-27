@@ -1,17 +1,17 @@
 <?xml version="1.0" ?>
 <rules max_depth="1000">
   <rule name="entry">
-    <call transforms="trans str" rule=""/>
+    <call transforms="" rule="['50', ['x', '1'], ['rz', '5'], ['s', '0.99'], 'color', 'red']"/>
   </rule>
   <rule name="d" max_depth="30">
-    <instance transforms="trans str" shape=""/>
-    <call transforms="trans str" rule=""/>
+    <instance transforms="" shape="box"/>
+    <call transforms="" rule="[['z', '1'], ['rx', '5']]"/>
   </rule>
   <rule name="d" weight="0.1">
-    <call transforms="trans str" rule=""/>
+    <call transforms="" rule="e"/>
   </rule>
   <rule name="e" max_depth="5">
-    <instance transforms="trans str" shape=""/>
-    <call transforms="trans str" rule=""/>
+    <instance transforms="" shape="box"/>
+    <call transforms="" rule="[['z', '1'], ['rx', '5']]"/>
   </rule>
 </rules>

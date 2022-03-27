@@ -1,19 +1,19 @@
 <?xml version="1.0" ?>
 <rules max_depth="3000">
   <rule name="entry">
-    <call transforms="trans str" rule=""/>
+    <call transforms="" rule="['9', ['x', '5']]"/>
   </rule>
   <rule name="r1" weight="10">
-    <call transforms="trans str" rule=""/>
-    <call transforms="trans str" rule=""/>
+    <call transforms="" rule="[['rz', '15'], 'h', '1', ['y', '1'], 'h', '4', ['z', '0.01'], ['s', '0.999']]"/>
+    <call transforms="" rule="r2"/>
   </rule>
   <rule name="r1" weight="0.1">
-    <call transforms="trans str" rule=""/>
-    <call transforms="trans str" rule=""/>
+    <call transforms="" rule="[['rx', '10'], ['z', '1'], ['s', '0.99']]"/>
+    <call transforms="" rule="r2"/>
   </rule>
   <rule name="r2">
-    <instance transforms="trans str" shape=""/>
-    <instance transforms="trans str" shape=""/>
-    <instance transforms="trans str" shape=""/>
+    <instance transforms="" shape="box"/>
+    <instance transforms="" shape="box"/>
+    <instance transforms="" shape="grid"/>
   </rule>
 </rules>

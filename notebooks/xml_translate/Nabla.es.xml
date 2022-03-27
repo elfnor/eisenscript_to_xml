@@ -1,24 +1,24 @@
 <?xml version="1.0" ?>
 <rules max_depth="30">
   <rule name="entry">
-    <instance transforms="trans str" shape=""/>
-    <call transforms="trans str" rule=""/>
-    <call transforms="trans str" rule=""/>
+    <instance transforms="" shape="box"/>
+    <call transforms="" rule="[['ry', '-90'], 'color', 'white']"/>
+    <call transforms="" rule="[['rx', '-90'], 'color', 'white']"/>
   </rule>
   <rule name="R1">
-    <call transforms="trans str" rule=""/>
-    <call transforms="trans str" rule=""/>
+    <call transforms="" rule="dbox"/>
+    <call transforms="" rule="[['z', '0.6'], ['rx', '5']]"/>
   </rule>
   <rule name="R1">
-    <call transforms="trans str" rule=""/>
-    <call transforms="trans str" rule=""/>
+    <call transforms="" rule="dbox"/>
+    <call transforms="" rule="[['z', '0.6'], ['rx', '-5']]"/>
   </rule>
   <rule name="R1">
-    <call transforms="trans str" rule=""/>
-    <call transforms="trans str" rule=""/>
+    <call transforms="" rule="dbox"/>
+    <call transforms="" rule="[['z', '0.6'], ['rz', '5']]"/>
   </rule>
   <rule name="R1">
-    <call transforms="trans str" rule=""/>
-    <call transforms="trans str" rule=""/>
+    <call transforms="" rule="dbox"/>
+    <call transforms="" rule="[['z', '0.6'], ['rz', '-5']]"/>
   </rule>
 </rules>

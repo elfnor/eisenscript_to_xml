@@ -1,23 +1,23 @@
 <?xml version="1.0" ?>
 <rules max_depth="1000">
   <rule name="entry">
-    <call transforms="trans str" rule=""/>
-    <call transforms="trans str" rule=""/>
+    <call transforms="" rule="['h', '30', 'sat', '0.7']"/>
+    <call transforms="" rule="[['ry', '180'], 'h', '30', 'sat', '0.7']"/>
   </rule>
   <rule name="seed" weight="100">
-    <instance transforms="trans str" shape=""/>
-    <call transforms="trans str" rule=""/>
+    <instance transforms="" shape="box"/>
+    <call transforms="" rule="[['y', '0.4'], ['rx', '1'], ['s', '0.995'], 'b', '0.995']"/>
   </rule>
   <rule name="seed" weight="100">
-    <instance transforms="trans str" shape=""/>
-    <call transforms="trans str" rule=""/>
+    <instance transforms="" shape="box"/>
+    <call transforms="" rule="[['y', '0.4'], ['rx', '1'], ['ry', '1'], ['s', '0.995'], 'b', '0.995']"/>
   </rule>
   <rule name="seed" weight="100">
-    <instance transforms="trans str" shape=""/>
-    <call transforms="trans str" rule=""/>
+    <instance transforms="" shape="box"/>
+    <call transforms="" rule="[['y', '0.4'], ['rx', '1'], ['rz', '-1'], ['s', '0.995'], 'b', '0.995']"/>
   </rule>
   <rule name="seed" weight="6">
-    <call transforms="trans str" rule=""/>
-    <call transforms="trans str" rule=""/>
+    <call transforms="" rule="[['rx', '15']]"/>
+    <call transforms="" rule="[['ry', '180'], 'h', '3']"/>
   </rule>
 </rules>

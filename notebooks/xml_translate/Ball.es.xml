@@ -1,14 +1,14 @@
 <?xml version="1.0" ?>
 <rules max_depth="2000">
   <rule name="entry">
-    <call transforms="trans str" rule=""/>
+    <call transforms="" rule="['a', '0.9', 'hue', '30']"/>
   </rule>
   <rule name="R1" weight="10">
-    <instance transforms="trans str" shape=""/>
-    <call transforms="trans str" rule=""/>
+    <instance transforms="" shape="box"/>
+    <call transforms="" rule="[['x', '1'], ['rz', '3'], ['ry', '5']]"/>
   </rule>
   <rule name="R1" weight="10">
-    <instance transforms="trans str" shape=""/>
-    <call transforms="trans str" rule=""/>
+    <instance transforms="" shape="box"/>
+    <call transforms="" rule="[['x', '1'], ['rz', '-3'], ['ry', '5']]"/>
   </rule>
 </rules>

@@ -29,7 +29,7 @@ from xml.dom import minidom
 import pyparsing as pp
 
 
-def trans_str1(trans_list):
+def trans_str(trans_list):
     """
     x -> tx
     y -> ty
@@ -42,21 +42,15 @@ def trans_str1(trans_list):
     """
     tstr = ""
     for t in trans_list:
-        if t.tid == "s" and len(t) == 2:
-            t.tid = "sa"
-        if t.tid in ("x", "y", "z"):
-            t.tid = "t" + t.tid
-
-        tstr = tstr + t.tid + " " + " ".join(t.tvalues) + " "
+        tid = t["tid"]
+        if t["tid"] == "s" and len(t["tvalues"]) == 1:
+            tid = "sa"
+        if t["tid"] in ("x", "y", "z"):
+            tid = "t" + t["tid"]
+        tstr += tid + " " + " ".join(t["tvalues"]) + " "
     tstr = tstr.strip()
     return tstr
 
-
-def trans_str2(trans_list):
-    return "JUNK trans str:" + str(len(trans_list))
-
-
-trans_str = trans_str2
 
 # pretty print function for xml
 
@@ -68,7 +62,7 @@ def prettify(elem):
     return reparsed.toprettyxml(indent="  ")
 
 
-def eisen_grammar():
+def eisen_grammar_old():
     # define parser grammar
     # this is rough and imposes no structure on float and interger expressions
     # but works if es is properly formed
@@ -143,6 +137,90 @@ def eisen_grammar():
     return file_def
 
 
+def rule_shape_grammar():
+    """define grammar for the rule and shape calls
+    should parse lines like rule calls
+    '{ rx 180 x 20  rz 2 } br'
+    and shape calls
+    '{  x 30 y 30 z -3 s 900 900 1 color white } box'
+    """
+    fnum = pp.Word(".+-*/()" + pp.nums)
+    loop_multiplier = fnum("count") + pp.Suppress("*")
+
+    tid = pp.oneOf("x y z s rx ry rz", caseless=True)("tid")
+    # these are color transforms that we're ignoring
+    cid = pp.oneOf("h hue sat b brightness a alpha m", caseless=True)
+    tvalues = pp.OneOrMore(fnum)("tvalues")
+    gtrans = pp.Group(tid + tvalues)
+    ctrans = cid + tvalues
+    c2trans = pp.CaselessKeyword("color") + pp.Word(pp.alphanums + "#")
+    c3trans = pp.CaselessKeyword("blend") + pp.Word(pp.alphanums + "#") + fnum
+    trans = gtrans | pp.Suppress(ctrans) | pp.Suppress(c2trans) | pp.Suppress(c3trans)
+
+    loop = (
+        pp.Optional(loop_multiplier)
+        + pp.Suppress("{")
+        + pp.ZeroOrMore(trans)
+        + pp.Suppress("}")
+    )
+
+    shape_words = pp.oneOf(["box", "grid", "sphere", "line"], caseless=True)
+    shape = pp.Combine(shape_words + pp.Optional(pp.Word(pp.alphas + ":")))
+
+    shape_call = pp.Optional(loop)("trans") + shape("shape")
+    rule_name = pp.Word(pp.alphas, pp.alphanums + "_")
+    rule_call = pp.Optional(loop)("trans") + rule_name("rule_name")
+    call = shape_call | rule_call
+    return call
+
+
+def eisen_grammar():
+    # define parser grammar
+    # this is rough and imposes no structure on float and interger expressions
+    # but works if es is properly formed
+    fnum = pp.Word(".+-*/()" + pp.nums)
+
+    rule_name = pp.NotAny(pp.CaselessKeyword("rule")) + pp.Word(
+        pp.alphas, pp.alphanums + "_"
+    )
+
+    md = pp.oneOf("md maxdepth", caseless=True)
+    md_mod = md + fnum("md") + pp.Optional(">" + rule_name("successor_rule"))
+
+    weight = pp.oneOf("w weight", caseless=True)
+    w_mod = weight + fnum("wm")
+
+    global_md = pp.CaselessKeyword("set") + md + fnum("global_md")
+
+    call = rule_shape_grammar()
+
+    rule = pp.Group(
+        pp.Suppress(pp.CaselessKeyword("rule"))
+        + rule_name("name")
+        + (pp.Optional(md_mod) & pp.Optional(w_mod))
+        + pp.Suppress("{")
+        + pp.OneOrMore(call)
+        + pp.Suppress("}")
+    )
+
+    entry = pp.Group(pp.OneOrMore(call)).setResultsName(
+        "entry_calls", listAllMatches=True
+    )
+    main = pp.Group(pp.OneOrMore(rule)).setResultsName("rule_defs", listAllMatches=True)
+    file_def = pp.Optional(global_md) + entry + main
+    file_def.ignore(pp.cppStyleComment)
+    # more stuff to ignore
+    set_words = pp.oneOf(
+        "seed maxobjects maxsize minsize background "
+        + "colorpool translation rotation pivot scale "
+        + "raytracer syncrandom",
+        caseless=True,
+    )
+    set_ignore = pp.CaselessKeyword("set") + set_words + pp.restOfLine
+    file_def.ignore(set_ignore)
+    return file_def
+
+
 # from pyparsing results to xml
 
 
@@ -152,12 +230,12 @@ def es_call(top, rule, pcall, is_bcall, n):
         call_type = "instance"
         atr_name = "shape"
         atr_value = pcall.shape
-        atr_value = "JUNK shape"
+        atr_value = pcall.as_list()[-1]
     else:
         call_type = "call"
         atr_name = "rule"
         atr_value = pcall.rule_name
-        atr_value = "JUNK rule"
+        atr_value = pcall[0]
 
     call = ET.SubElement(rule, call_type)
     # dealing with nested rules
@@ -220,6 +298,7 @@ def es_xml2(results):
             rule.set("max_depth", p.md)
         if p.successor_rule:
             rule.set("successor", p.successor_rule[0])
+
         for c in p.bcall:
             top = es_call(top, rule, c, True, n)
         for c in p.rcall:
