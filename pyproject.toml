@@ -5,8 +5,10 @@ description = ""
 authors = ["elfnor <elfnor@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "3.8.10"
 ipykernel = "^6.9.2"
+pyparsing = {extras = ["diagrams"], version = "^3.0.7"}
+lark = "^1.1.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
