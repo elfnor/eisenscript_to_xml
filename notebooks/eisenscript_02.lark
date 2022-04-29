@@ -2,8 +2,9 @@
 ?start: main
 main: global_md? entry ruledef+ 
 entry: call+			
-call: (count* loop*)*  rn
-loop:  "{" trans+ "}"
+call: loop*  rn
+loop:  count? transgroup?
+transgroup : "{" trans+ "}"
 count: NUMBER "*"                                             -> repeat               
 trans: (TID | CID) VALUE+   
 
