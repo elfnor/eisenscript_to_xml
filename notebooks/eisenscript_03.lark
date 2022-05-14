@@ -6,7 +6,7 @@ call: loop*  rn
 loop:  count? transgroup?
 transgroup : "{" trans+ "}"
 count: NUMBER "*"                                             -> repeat               
-trans: (TID | CID) VALUE+   
+trans: _transc | _transv  
 
 ruledef: "rule" rndef  mods*  "{" call* "}"
 mods: md_mod | w_mod 
@@ -19,21 +19,29 @@ w_mod: ("w" |"weight") NUMBER                                -> wmod
 
 
 // terminals
-rn: /[^\W\d]\w*/                                             -> rulename
-rndef: /[^\W\d]\w*/                                          -> rulenamedef
-_successor: /[^\W\d]\w*/ 
+rn: NAME                                            -> rulename
+rndef: NAME                                          -> rulenamedef
+_successor: NAME
 
-TID: "x"|"y"|"z"|"s"|"rx"|"ry"|"rz"
-CID: "h"|"hue"|"sat"|"b"|"brightness"|"a"|"alpha"|"m" |"c" |"color" | "blend"
-VALUE: SIGNED_NUMBER | COLORHEX | COLORNAME
+// transforms with one or more  numeric values
+VID: "x"|"y"|"z"|"s"|"rx"|"ry"|"rz"|"h"|"hue"|"sat"|"b"|"brightness"|"a"|"alpha"
+_transv: VID VALUE+
+
+// transforms followed by a color
+CID: "color" | "blend"
+
+_transc: CID (COLORHEX | COLORNAME)
+
+VALUE: SIGNED_NUMBER 
 COLORHEX: "#" HEXDIGIT+ 
-COLORNAME: "blue" 
+COLORNAME: NAME
+
+NAME: /[^\W\d]\w*/ 
+
+SET: "set" WORD (VALUE | COLORHEX | COLORNAME)
 
 
-IG: "set"  /[^\n]*/
 
-
-%ignore IG
 %import common.NUMBER  
 %import common.HEXDIGIT
 %import common.SIGNED_NUMBER

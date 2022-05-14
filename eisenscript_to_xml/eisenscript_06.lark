@@ -1,0 +1,62 @@
+// lark parser grammar for eisenscript 
+// http://structuresynth.sourceforge.net/reference.php
+// covers parts applicable to translation to eisenxml
+// structure
+?start: main
+main: setblock? entry setblock? ruledef+ setblock? 
+entry: call+			
+call: loop*  rn 
+loop:  count? transgroup?
+transgroup : "{" trans+ "}"
+count: NUMBER "*"                                             -> repeat               
+trans: _transc | _transv  
+
+ruledef: "rule"i rndef  mods*  "{" "set seed initial"? call* "}" 
+mods: md_mod | w_mod 
+
+
+global_md: "set" ("md" | "maxdepth") NUMBER
+md_mod: ("md" | "maxdepth") NUMBER [">" _successor]          -> mmod
+w_mod: ("w" |"weight") NUMBER                               -> wmod
+
+setblock: set*
+
+rn: NAME                          -> rulename
+rndef: NAME                            -> rulenamedef
+_successor: NAME
+
+// transforms with one or more numeric values or a #define varname
+VID: "x"|"y"|"z"|"s"|"rx"|"ry"|"rz"|"h"|"hue"|"sat"|"b"|"brightness"|"a"|"alpha"
+_transv: VID (VALUE+)
+
+// transforms followed by a color
+CID: "color" | "blend"
+
+_transc: CID (COLORHEX | COLORNAME) VALUE?
+
+
+VALUE: SIGNED_NUMBER ("/" SIGNED_NUMBER)?
+COLORHEX: "#" HEXDIGIT+ 
+COLORNAME: NAME
+
+NAME: /[^\W\d][\w\:]*/ 
+ATRNAME: /[^\W][\w\:\-]*/
+ATRWORD: /[^\W][\w\:\-\,]*/
+
+set: "set" setatr
+setatr : ATRNAME  (ATRWORD | VALUE | COLORHEX | COLORNAME | triple)
+
+triple: "[" triplevalue+ "]"
+triplevalue: VALUE ","?
+
+%import common.NUMBER  
+%import common.HEXDIGIT
+%import common.SIGNED_NUMBER
+%import common.SIGNED_NUMBER
+%import common.WORD
+%import common.WS
+%ignore WS
+%import common.CPP_COMMENT
+%ignore CPP_COMMENT
+%import common.C_COMMENT
+%ignore C_COMMENT
