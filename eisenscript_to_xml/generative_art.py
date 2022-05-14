@@ -47,11 +47,8 @@ class LSystem:
 
         self.xml_text = xml
         self._tree = et.fromstring(self.xml_text)
-        try:
-            self._maxDepth = int(self._tree.get("max_depth"))
-        except TypeError:
-            self._maxDepth = 100
 
+        self._maxDepth = int(self._tree.get("max_depth"))
         self._progressCount = 0
         self._maxObjects = maxObjects
         self._xml_text_preformat()

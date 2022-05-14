@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<rules>
+<rules max_depth="500">
   <rule name="entry">
     <call rule="grinder" count="1" transforms=""/>
   </rule>

@@ -211,10 +211,32 @@ rule dbox w 5{
 { s _f1 _f2 -_f3 x 10  } box
 }"""
 
+# this tests nested loops properly -
+#  should produce 10 objects produces 5
+ring_k = """
+5 * { ry 72  z 1.0   }   2 *  { z 1.0   } xbox
+
+rule xbox {
+    box
+}
+"""
+
 
 @pytest.mark.parametrize(
     "es_str",
-    [ring_a, ring_b, ring_c, ring_d, ring_e, ring_f, ring_g, ring_h, ring_i, ring_j],
+    [
+        ring_a,
+        ring_b,
+        ring_c,
+        ring_d,
+        ring_e,
+        ring_f,
+        ring_g,
+        ring_h,
+        ring_i,
+        ring_j,
+        ring_k,
+    ],
     ids=[
         "ring_a",
         "ring_b",
@@ -226,6 +248,7 @@ rule dbox w 5{
         "ring_h",
         "ring_i",
         "ring_j",
+        "ring_k",
     ],
 )
 def test_convert(es_str):

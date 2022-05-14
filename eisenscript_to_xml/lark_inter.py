@@ -50,6 +50,9 @@ class Iesxml(Interpreter):
         self.active = self.xmltree
         self._visit_tree(tree)
         self._scale_weights()
+        md = self.xmltree.get("max_depth")
+        if not md:
+            self.xmltree.set("max_depth", "100")
         return prettify(self.xmltree)
 
     def _scale_weights(self):
