@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<rules max_depth="100">
+  <rule name="entry">
+    <call rule="r1_00" count="10" transforms="ry 36"/>
+  </rule>
+  <rule name="r1_00">
+    <call rule="r1_01" count="1" transforms="30"/>
+  </rule>
+  <rule name="r1_01">
+    <call rule="r1_02" count="1" transforms="ry 10"/>
+  </rule>
+  <rule name="r1_02">
+    <call rule="r1" count="1" transforms=""/>
+  </rule>
+  <rule name="r1" weight="20">
+    <call rule="r1" count="1" transforms="sa 0.9 rz 5  rx 5 tx 1"/>
+    <instance shape="box" count="1" transforms="s 1 0.2 0.5"/>
+  </rule>
+  <rule name="r1" weight="20">
+    <call rule="r1" count="1" transforms="sa 0.99 rz -5  rx -5 tx 1"/>
+    <instance shape="box" count="1" transforms="s 1 0.2 0.5"/>
+  </rule>
+  <rule name="r1"/>
+</rules>

@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<rules>
+  <rule name="entry">
+    <call rule="grinder" count="1" transforms=""/>
+  </rule>
+  <rule name="grinder">
+    <call rule="xbox_00" count="36" transforms="rz 5 rz 2 ty 0.1"/>
+  </rule>
+  <rule name="xbox_00">
+    <call rule="xbox" count="36" transforms="ry 10 rz 3 tz 1.2"/>
+  </rule>
+  <rule name="xbox">
+    <call rule="frame" count="1" transforms="sa 1.1"/>
+    <instance shape="box" count="1" transforms=""/>
+  </rule>
+  <rule name="xbox">
+    <call rule="frame" count="1" transforms="sa 1.1"/>
+    <instance shape="box" count="1" transforms=""/>
+  </rule>
+  <rule name="frame">
+    <instance shape="box" count="1" transforms="s 0.05 1.05 0.05 tx 10 tz 10"/>
+    <instance shape="box" count="1" transforms="s 0.05 1.05 0.05 tx 10 tz -10"/>
+    <instance shape="box" count="1" transforms="s 0.05 1.05 0.05 tx -10 tz 10"/>
+    <instance shape="box" count="1" transforms="s 0.05 1.05 0.05 tx -10 tz -10"/>
+    <instance shape="box" count="1" transforms="s 1.05 0.05 0.05 ty 10 tz 10"/>
+    <instance shape="box" count="1" transforms="s 1.05 0.05 0.05 ty 10 tz -10"/>
+    <instance shape="box" count="1" transforms="s 1.05 0.05 0.05 ty -10 tz 10"/>
+    <instance shape="box" count="1" transforms="s 1.05 0.05 0.05 ty -10 tz -10"/>
+    <instance shape="box" count="1" transforms="s 0.05 0.05 1.05 ty 10 tx 10"/>
+    <instance shape="box" count="1" transforms="s 0.05 0.05 1.05 ty 10 tx -10"/>
+    <instance shape="box" count="1" transforms="s 0.05 0.05 1.05 ty -10 tx 10"/>
+    <instance shape="box" count="1" transforms="s 0.05 0.05 1.05 ty -10 tx -10"/>
+  </rule>
+</rules>

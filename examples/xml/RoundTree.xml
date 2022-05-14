@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<rules max_depth="400">
+  <rule name="entry">
+    <call rule="R1_00" count="1" transforms="ry 90 tx 6"/>
+  </rule>
+  <rule name="R1_00">
+    <call rule="R1" count="10" transforms="rx 36"/>
+    <instance shape="box" count="1" transforms="s 200 200 0.1"/>
+  </rule>
+  <rule name="R1">
+    <call rule="R1" count="1" transforms="tx 1 rz -4 ry 6 sa 0.99"/>
+    <instance shape="sphere" count="1" transforms="sa 2"/>
+  </rule>
+  <rule name="R1">
+    <call rule="R1" count="1" transforms="tx 1 rz 4 ry 6 sa 0.99"/>
+    <instance shape="sphere" count="1" transforms="sa 2"/>
+  </rule>
+</rules>

@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<rules max_depth="2000">
+  <rule name="entry">
+    <call rule="R1" count="1" transforms=""/>
+  </rule>
+  <rule name="R1" weight="10">
+    <call rule="R1" count="1" transforms="tx 1 rz 3 ry 5"/>
+  </rule>
+  <rule name="R1" weight="10">
+    <call rule="R1" count="1" transforms="tx 1 rz -3 ry 5"/>
+    <instance shape="box" count="1" transforms="s 1 1 0.1"/>
+  </rule>
+</rules>

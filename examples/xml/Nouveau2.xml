@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<rules max_depth="1000">
+  <rule name="entry">
+    <call rule="hbox" count="6" transforms="rz 60"/>
+  </rule>
+  <rule name="hbox">
+    <call rule="r" count="1" transforms=""/>
+  </rule>
+  <rule name="r">
+    <call rule="forward" count="1" transforms="rx 90"/>
+  </rule>
+  <rule name="r">
+    <call rule="forward" count="1" transforms="rx -90"/>
+  </rule>
+  <rule name="r">
+    <call rule="forward" count="1" transforms=""/>
+  </rule>
+  <rule name="r">
+    <call rule="forward" count="1" transforms=""/>
+  </rule>
+  <rule name="r">
+    <call rule="turn" count="1" transforms=""/>
+  </rule>
+  <rule name="r">
+    <call rule="turn2" count="1" transforms=""/>
+  </rule>
+  <rule name="forward" max_depth="90" successor="r">
+    <call rule="dbox" count="1" transforms=""/>
+    <call rule="forward" count="1" transforms="rz 2 tx 0.1 sa 0.999"/>
+  </rule>
+  <rule name="turn" max_depth="90" successor="r">
+    <call rule="dbox" count="1" transforms=""/>
+    <call rule="turn" count="1" transforms="rz 2 tx 0.1 sa 0.999"/>
+  </rule>
+  <rule name="turn2" max_depth="90" successor="r">
+    <call rule="dbox" count="1" transforms=""/>
+    <call rule="turn2" count="1" transforms="rz -2 tx 0.1 sa 0.999"/>
+  </rule>
+  <rule name="turn3" max_depth="90" successor="r">
+    <call rule="dbox" count="1" transforms=""/>
+    <call rule="turn3" count="1" transforms="ry -2 tx 0.1 sa 0.999"/>
+  </rule>
+  <rule name="turn4" max_depth="90" successor="r">
+    <call rule="dbox" count="1" transforms=""/>
+    <call rule="turn4" count="1" transforms="ry -2 tx 0.1 sa 0.999"/>
+  </rule>
+  <rule name="turn5" max_depth="90" successor="r">
+    <call rule="dbox" count="1" transforms=""/>
+    <call rule="turn5" count="1" transforms="rx -2 tx 0.1 sa 0.999"/>
+  </rule>
+  <rule name="turn6" max_depth="90" successor="r">
+    <call rule="dbox" count="1" transforms=""/>
+    <call rule="turn6" count="1" transforms="rx -2 tx 0.1 sa 0.999"/>
+  </rule>
+  <rule name="dbox">
+    <instance shape="box" count="1" transforms="s 0.2 1 1"/>
+    <instance shape="box" count="1" transforms="rx 10 s 0.2 1 1"/>
+  </rule>
+</rules>

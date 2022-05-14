@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<rules max_depth="600">
+  <rule name="entry">
+    <call rule="start" count="1" transforms=""/>
+  </rule>
+  <rule name="spiral" weight="100">
+    <instance shape="box" count="1" transforms=""/>
+    <call rule="spiral" count="1" transforms="ty 0.4 rx 5  sa 0.995"/>
+  </rule>
+  <rule name="spiral" weight="100">
+    <instance shape="box" count="1" transforms=""/>
+    <call rule="spiral" count="1" transforms="ty 0.4 rx 5  rz -5 sa 0.995"/>
+  </rule>
+  <rule name="spiral" weight="100">
+    <instance shape="box" count="1" transforms=""/>
+    <call rule="spiral" count="1" transforms="ty 0.4 rx 5  rz 5 sa 0.995"/>
+  </rule>
+  <rule name="spiral" weight="3">
+    <call rule="start" count="1" transforms=""/>
+  </rule>
+  <rule name="start">
+    <call rule="spiral" count="1" transforms="rx 15"/>
+    <call rule="spiral" count="1" transforms="ry 180"/>
+  </rule>
+</rules>

@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<rules>
+  <rule name="entry">
+    <call rule="d_00" count="50" transforms="tx 1 rz 5 sa 0.99"/>
+  </rule>
+  <rule name="d_00" weight="10">
+    <call rule="d_01" count="1" transforms="20"/>
+  </rule>
+  <rule name="d_01" weight="10">
+    <call rule="d" count="1" transforms="ty 1 rz 3"/>
+  </rule>
+  <rule name="d" max_depth="30" weight="10">
+    <call rule="d" count="1" transforms="tz 1 rx 5"/>
+    <instance shape="box" count="1" transforms="s 0.01 1 1.2"/>
+  </rule>
+  <rule name="d" weight="1">
+    <call rule="e" count="1" transforms=""/>
+  </rule>
+  <rule name="e" max_depth="5" weight="10">
+    <call rule="e" count="1" transforms="tz 1 rx 5"/>
+    <instance shape="box" count="1" transforms="s 0.01 1 1.2"/>
+  </rule>
+</rules>

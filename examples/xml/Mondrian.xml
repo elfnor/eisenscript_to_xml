@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<rules>
+  <rule name="entry">
+    <call rule="mondrian" count="1" transforms=""/>
+  </rule>
+  <rule name="mondrian">
+    <call rule="a2" count="1" transforms=""/>
+    <call rule="a2" count="1" transforms="tx -0.5 tz -0.5 ry 90"/>
+    <call rule="a2" count="1" transforms="tx +0.5 tz -0.5 ry 90"/>
+    <call rule="a2" count="1" transforms="tz -1"/>
+    <call rule="a2" count="1" transforms="ty +0.5 tz -0.5 rx 90"/>
+    <call rule="a2" count="1" transforms="ty -0.5 tz -0.5 rx 90"/>
+  </rule>
+  <rule name="a2" weight="2" max_depth="2" successor="d">
+    <call rule="a2" count="1" transforms="s 0.333 1 1 tx -1"/>
+    <call rule="a2" count="1" transforms="s 0.666 1 1 tx 0.26"/>
+  </rule>
+  <rule name="a2" weight="2" max_depth="2" successor="d">
+    <call rule="a2" count="1" transforms="s 1 0.333 1 ty -1"/>
+    <call rule="a2" count="1" transforms="s 1 0.666 1 ty 0.26"/>
+  </rule>
+  <rule name="a2">
+    <call rule="d" count="1" transforms=""/>
+  </rule>
+  <rule name="d">
+    <call rule="square" count="1" transforms="s 1 1 0.02"/>
+  </rule>
+  <rule name="d">
+    <call rule="square" count="1" transforms="s 1 1 0.02"/>
+  </rule>
+  <rule name="d">
+    <call rule="square" count="1" transforms="s 1 1 0.02"/>
+  </rule>
+  <rule name="d" weight="2">
+    <call rule="square" count="1" transforms="s 1 1 0.02"/>
+  </rule>
+  <rule name="square">
+    <instance shape="box" count="1" transforms="s 0.95 0.95 1"/>
+    <instance shape="box" count="1" transforms="s 0.05 1 1  tx -10"/>
+    <instance shape="box" count="1" transforms="s 0.05 1 1  tx 10"/>
+    <instance shape="box" count="1" transforms="s 1.05 0.05 1  ty -10"/>
+    <instance shape="box" count="1" transforms="s 1.05 0.05 1  ty 10"/>
+  </rule>
+</rules>

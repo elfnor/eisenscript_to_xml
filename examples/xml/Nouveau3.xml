@@ -1,0 +1,67 @@
+<?xml version="1.0" ?>
+<rules max_depth="1000">
+  <rule name="entry">
+    <call rule="hbox_00" count="10" transforms="tx 0  ry 10"/>
+  </rule>
+  <rule name="hbox_00">
+    <call rule="hbox_01" count="1" transforms="2"/>
+  </rule>
+  <rule name="hbox_01">
+    <call rule="hbox" count="1" transforms="rz 180"/>
+  </rule>
+  <rule name="hbox">
+    <call rule="r" count="1" transforms=""/>
+  </rule>
+  <rule name="r">
+    <call rule="forward" count="1" transforms=""/>
+  </rule>
+  <rule name="r">
+    <call rule="turn" count="1" transforms=""/>
+  </rule>
+  <rule name="r">
+    <call rule="turn2" count="1" transforms=""/>
+  </rule>
+  <rule name="r">
+    <call rule="turn4" count="1" transforms=""/>
+  </rule>
+  <rule name="r">
+    <call rule="turn3" count="1" transforms=""/>
+  </rule>
+  <rule name="r">
+    <call rule="turn5" count="1" transforms=""/>
+  </rule>
+  <rule name="r">
+    <call rule="turn6" count="1" transforms=""/>
+  </rule>
+  <rule name="forward" max_depth="90" successor="r">
+    <call rule="dbox" count="1" transforms=""/>
+    <call rule="forward" count="1" transforms="rz 2 tx 0.1 sa 0.996"/>
+  </rule>
+  <rule name="turn" max_depth="90" successor="r">
+    <call rule="dbox" count="1" transforms=""/>
+    <call rule="turn" count="1" transforms="rz 2 tx 0.1 sa 0.996"/>
+  </rule>
+  <rule name="turn2" max_depth="90" successor="r">
+    <call rule="dbox" count="1" transforms=""/>
+    <call rule="turn2" count="1" transforms="rz -2 tx 0.1 sa 0.996"/>
+  </rule>
+  <rule name="turn3" max_depth="90" successor="r">
+    <call rule="dbox" count="1" transforms=""/>
+    <call rule="turn3" count="1" transforms="ry -2 tx 0.1 sa 0.996"/>
+  </rule>
+  <rule name="turn4" max_depth="90" successor="r">
+    <call rule="dbox" count="1" transforms=""/>
+    <call rule="turn4" count="1" transforms="ry -2 tx 0.1 sa 0.996"/>
+  </rule>
+  <rule name="turn5" max_depth="90" successor="r">
+    <call rule="dbox" count="1" transforms=""/>
+    <call rule="turn5" count="1" transforms="ry -2 tx 0.1 sa 0.996"/>
+  </rule>
+  <rule name="turn6" max_depth="90" successor="r">
+    <call rule="dbox" count="1" transforms=""/>
+    <call rule="turn6" count="1" transforms="ry -2 tx 0.1 sa 0.996"/>
+  </rule>
+  <rule name="dbox">
+    <instance shape="sphere" count="1" transforms="s 0.2 1 1"/>
+  </rule>
+</rules>
