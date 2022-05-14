@@ -17,7 +17,7 @@ from lark import Lark
 from lark.visitors import Interpreter, v_args
 
 
-parser = Lark.open("eisenscript_06.lark", rel_to=__file__)
+parser = Lark.open("eisenscript.lark", rel_to=__file__)
 
 
 def pre_process_es(es_text):
