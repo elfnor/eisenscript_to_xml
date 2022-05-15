@@ -7,15 +7,15 @@
     <call rule="arm" count="36" transforms="ry 10 tz 1.2"/>
   </rule>
   <rule name="arm">
-    <call rule="xbox" count="1" transforms=""/>
+    <call rule="xbox"/>
     <call rule="arm" count="1" transforms="rz -1 rx 3 tz 0.22 tx 0.3 ry 10 sa 0.998 tx 0.5"/>
   </rule>
   <rule name="arm">
-    <call rule="xbox" count="1" transforms=""/>
+    <call rule="xbox"/>
     <call rule="arm" count="1" transforms="rz 1 rx 3 tz 0.22 tx 0.3 ry 10 sa 0.99 tx -0.5"/>
   </rule>
   <rule name="xbox">
-    <instance shape="box" count="1" transforms=""/>
+    <instance shape="box"/>
   </rule>
   <rule name="xbox">
     <instance shape="grid" count="1" transforms="sa 0.9"/>

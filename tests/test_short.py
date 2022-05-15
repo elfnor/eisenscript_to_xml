@@ -40,7 +40,7 @@ from eisenscript_to_xml.lark_inter import Iesxml, parser, pre_process_es
 from eisenscript_to_xml.generative_art import LSystem
 
 """
-all of the below should produce 10 objects
+all of the below should produce 12 objects
 spaced around a ring in the xy plane, radius 10, centered on origin
 but each tests different parts of the grammar parser
 """
@@ -50,7 +50,7 @@ but each tests different parts of the grammar parser
 # signed floats
 # s with 1 value
 ring_a = """set maxdepth 20
-10 * { rz -36.0 }  dbox
+12 * { rz -30.0 }  dbox
 rule dbox {
  {x +10.0 s 1}  box
 }
@@ -64,7 +64,7 @@ rule dbox {
 # loop with only color transforms
 # capitalise "Rule"
 ring_b = """set maxdepth 20
-10 * {rz 36 } 1 * { x 10.0 rz 180}  dbox
+12 * {rz 30 } 1 * { x 10.0 rz 180}  dbox
 
 Rule dbox {
   {hue 0.5 brightness 0.9 alpha 0.4} box
@@ -82,7 +82,7 @@ r1
 
 // and here are the rule definitions
 rule r1 {
-  10 * { rz -36 }  dbox
+  12 * { rz -30 }  dbox
 }
 rule dbox {
  {x +10 s 1 1 1 }  box
@@ -92,7 +92,7 @@ rule dbox {
 # multiple weighted defintions of the same rule
 # weights less than 1
 ring_d = """set maxdepth 20
-10 * { rz 36 }  dbox
+12 * { rz 30 }  dbox
 
 rule dbox w 1{
  {x 9.999} box
@@ -108,11 +108,11 @@ rule dbox w 0.5{
 # ignore "set seed initial"
 ring_e = """set maxdepth 20
 dbox
-{rz -36 x 10 } box
+{rz -30 x 10 } box
 
-rule dbox md 9{
+rule dbox md 11{
   set seed initial
-  { rz 36} dbox
+  { rz 30} dbox
   {x 10} box
 }"""
 
@@ -123,8 +123,8 @@ rule dbox md 9{
 ring_f = """set maxdepth 20
 dbox
 
-rule dbox md 9 > lastbox{
-  { rz 36} dbox
+rule dbox md 11 > lastbox{
+  { rz 30} dbox
   {x 10 color my_shade_of_red blend red } box
 }
 
@@ -156,13 +156,13 @@ set raytracer::max-depth 5
 
 dbox
 
-rule dbox weight 10 md 9 > lastbox{
-  { rz 36} dbox
+rule dbox weight 10 md 11 > lastbox{
+  { rz 30} dbox
   {x 10 } box
 }
 
 rule dbox w 1 maxdepth 10 {
-  { rz 36} dbox
+  { rz 30} dbox
   {x 10 } box
 }
 
@@ -174,9 +174,9 @@ rule lastbox {
 # at front
 # later on
 # constant includes undescore
-ring_h = """#define angle 36
+ring_h = """#define angle 30
 set maxdepth 20
-10 * { rz angle}  dbox
+12 * { rz angle}  dbox
 #define _radius 10
 rule dbox {
  {x _radius }  box
@@ -186,8 +186,8 @@ rule dbox {
 # #define between rules
 # constant includes transform id
 ring_i = """set maxdepth 20
-#define angle 36
-10 * { rz angle}  dbox
+#define angle 30
+12 * { rz angle}  dbox
 
 rule dbox w 10{
  {x 9.999} box
@@ -205,19 +205,28 @@ ring_j = """set maxdepth 20
 #define _f2 1.0
 #define _f3 1.0
 
-10 * { rz 360/10}  dbox
+12 * { rz 360/12}  dbox
 
 rule dbox w 5{
 { s _f1 _f2 -_f3 x 10  } box
 }"""
 
-# this tests nested loops properly -
-#  should produce 10 objects produces 5
+# these test nested loops properly -
+# produce 12 objects in double rings
 ring_k = """
-5 * { ry 72  z 1.0   }   2 *  { z 1.0   } xbox
+6 * { ry 60  z 1.0   }   2 *  { z 1.0   } xbox
 
 rule xbox {
-    box
+    {x 1} box
+}
+"""
+
+# triple nested loop
+ring_l = """
+3 * { ry 60  z 1.0   }   2 *  { y 1   } 2 *  { x 1 } xbox
+
+rule xbox {
+    {x 1} box
 }
 """
 
@@ -236,6 +245,7 @@ rule xbox {
         ring_i,
         ring_j,
         ring_k,
+        ring_l,
     ],
     ids=[
         "ring_a",
@@ -249,6 +259,7 @@ rule xbox {
         "ring_i",
         "ring_j",
         "ring_k",
+        "ring_l",
     ],
 )
 def test_convert(es_str):
@@ -258,4 +269,4 @@ def test_convert(es_str):
     lsys = LSystem(xml_str, 100)
     shapes = lsys.evaluate(0)
     # count shapes that are not None
-    assert len([s for s in shapes if s]) == 10
+    assert len([s for s in shapes if s]) == 12

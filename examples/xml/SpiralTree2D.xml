@@ -5,11 +5,11 @@
     <call rule="spiral" count="1" transforms="ry 180"/>
   </rule>
   <rule name="spiral" weight="100">
-    <instance shape="box" count="1" transforms=""/>
+    <instance shape="box"/>
     <call rule="spiral" count="1" transforms="ty 0.4 rx 1 sa 0.995"/>
   </rule>
   <rule name="spiral" weight="1">
-    <call rule="spiral" count="1" transforms=""/>
+    <call rule="spiral"/>
     <call rule="spiral" count="1" transforms="ry 180"/>
   </rule>
 </rules>

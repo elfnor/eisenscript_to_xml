@@ -1,46 +1,40 @@
 <?xml version="1.0" ?>
 <rules max_depth="100">
   <rule name="entry">
-    <call rule="set" count="1" transforms=""/>
-    <call rule="background" count="1" transforms=""/>
-    <call rule="white" count="1" transforms=""/>
     <call rule="dspawn_00" count="10" transforms="sa 0.8 rx 36 ry 10"/>
   </rule>
   <rule name="dspawn_00">
-    <call rule="dspawn_01" count="1" transforms="30"/>
+    <call rule="dspawn_01" count="30" transforms="rz 360/30"/>
   </rule>
   <rule name="dspawn_01">
-    <call rule="dspawn_02" count="1" transforms="rz 360/30"/>
-  </rule>
-  <rule name="dspawn_02">
     <call rule="dspawn" count="1" transforms="tx 10 rz 180"/>
   </rule>
   <rule name="dspawn">
-    <call rule="spawn" count="1" transforms=""/>
-    <call rule="m" count="1" transforms=""/>
+    <call rule="spawn"/>
+    <call rule="m"/>
   </rule>
   <rule name="m"/>
   <rule name="spawn">
-    <call rule="dbox" count="1" transforms=""/>
+    <call rule="dbox"/>
   </rule>
   <rule name="dbox">
     <call rule="dbox" count="1" transforms="tx 0.1 sa 0.99"/>
-    <instance shape="box" count="1" transforms=""/>
+    <instance shape="box"/>
   </rule>
   <rule name="dbox">
     <call rule="dbox" count="1" transforms="tx 0.1 sa 0.99 ry 1"/>
-    <instance shape="box" count="1" transforms=""/>
+    <instance shape="box"/>
   </rule>
   <rule name="dbox">
     <call rule="dbox" count="1" transforms="tx 0.1 sa 0.99 ry -1"/>
-    <instance shape="box" count="1" transforms=""/>
+    <instance shape="box"/>
   </rule>
   <rule name="dbox">
     <call rule="dbox" count="1" transforms="tx 0.1 sa 0.99 ry 1"/>
-    <instance shape="box" count="1" transforms=""/>
+    <instance shape="box"/>
   </rule>
   <rule name="dbox">
     <call rule="dbox" count="1" transforms="tx 0.1 sa 0.99 rz -3"/>
-    <instance shape="box" count="1" transforms=""/>
+    <instance shape="box"/>
   </rule>
 </rules>

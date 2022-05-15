@@ -6,7 +6,7 @@ see working list below
 
 BAD
 
-Examples/Arc Sphere.es - endless loop in Lsystem?
+Examples/Arc Sphere.es - takes a long time
 does something odd with the sub-rules
 
 "Moduli Creatures.es" and "Thingy.es" fail randomly? 
@@ -30,6 +30,7 @@ from eisenscript_to_xml.generative_art import LSystem
 from eisenscript_to_xml import EXAMPLES_ES
 
 working = [
+    "Arc Sphere.es",
     "Ball.es",
     "BinaryKite.es",
     "City of Glass.es",

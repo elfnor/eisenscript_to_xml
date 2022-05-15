@@ -1,23 +1,20 @@
 <?xml version="1.0" ?>
-<rules max_depth="500">
+<rules max_depth="100">
   <rule name="entry">
-    <call rule="grinder" count="1" transforms=""/>
+    <call rule="grinder"/>
   </rule>
   <rule name="grinder">
     <call rule="arm_00" count="36" transforms="ry 10 tz 1.2"/>
   </rule>
   <rule name="arm_00">
-    <call rule="arm_01" count="1" transforms="1"/>
-  </rule>
-  <rule name="arm_01">
     <call rule="arm" count="1" transforms="ry 34 rx 34"/>
   </rule>
   <rule name="arm">
-    <call rule="xbox" count="1" transforms=""/>
+    <call rule="xbox"/>
     <call rule="arm" count="1" transforms="rz 2 rx 3 tz 0.22 tx 0.3 ry 10 sa 0.999 tx 0.5"/>
   </rule>
   <rule name="arm">
-    <call rule="xbox" count="1" transforms=""/>
+    <call rule="xbox"/>
     <call rule="arm" count="1" transforms="rz 2 rx 3 tz 0.22 tx 0.3 ry 10 sa 0.99 tx 0.5"/>
   </rule>
   <rule name="xbox">

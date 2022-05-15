@@ -6,19 +6,19 @@
     <instance shape="box" count="1" transforms="tx 30 ty 30 tz -3 s 900 900 1"/>
   </rule>
   <rule name="R1" weight="100">
-    <call rule="dbox" count="1" transforms=""/>
+    <call rule="dbox"/>
     <call rule="R1" count="1" transforms="tz 0.6 rx 5"/>
   </rule>
   <rule name="R1" weight="100">
-    <call rule="dbox" count="1" transforms=""/>
+    <call rule="dbox"/>
     <call rule="R1" count="1" transforms="tz 0.6 rx -5"/>
   </rule>
   <rule name="R1" weight="100">
-    <call rule="dbox" count="1" transforms=""/>
+    <call rule="dbox"/>
     <call rule="R1" count="1" transforms="tz 0.6 rz 5"/>
   </rule>
   <rule name="R1" weight="100">
-    <call rule="dbox" count="1" transforms=""/>
+    <call rule="dbox"/>
     <call rule="R1" count="1" transforms="tz 0.6 rz -5"/>
   </rule>
   <rule name="R1" weight="1"/>

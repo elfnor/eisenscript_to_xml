@@ -7,10 +7,7 @@
     <call rule="xbox_00" count="36" transforms="rz 10 ty 0.1"/>
   </rule>
   <rule name="xbox_00">
-    <call rule="xbox_01" count="1" transforms="36"/>
-  </rule>
-  <rule name="xbox_01">
-    <call rule="xbox" count="1" transforms="ry 10 tz 1.2"/>
+    <call rule="xbox" count="36" transforms="ry 10 tz 1.2"/>
   </rule>
   <rule name="xbox">
     <call rule="frame" count="1" transforms="sa 1.1"/>

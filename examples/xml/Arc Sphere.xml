@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<rules max_depth="100">
+  <rule name="entry">
+    <call rule="r1_00" count="7" transforms="sa 0.9 tz -2 ty 0.5"/>
+  </rule>
+  <rule name="r1_00">
+    <call rule="r1" count="1" transforms="sa 0.92 rz 0"/>
+    <call rule="r1_00" count="7" transforms="sa 0.9 tz -2 ty 0.5"/>
+  </rule>
+  <rule name="r1_00">
+    <call rule="r1" count="1" transforms="sa 0.87 rz 0"/>
+    <call rule="r1_00" count="7" transforms="sa 0.9 tz -2 ty 0.5"/>
+  </rule>
+  <rule name="r1_00">
+    <call rule="r1" count="1" transforms=""/>
+  </rule>
+  <rule name="r1" weight="40">
+    <call rule="ubox"/>
+    <call rule="dbox"/>
+    <call rule="r1" count="1" transforms="tx 1 ry 3"/>
+  </rule>
+  <rule name="r1" weight="14">
+    <call rule="r2"/>
+  </rule>
+  <rule name="r2" weight="10">
+    <call rule="r2" count="1" transforms="tx 1 ry 3"/>
+  </rule>
+  <rule name="r2">
+    <call rule="r1"/>
+  </rule>
+  <rule name="dbox" weight="8" max_depth="15">
+    <call rule="dbox" count="1" transforms="ty -1 rx 2.9"/>
+    <call rule="sbox"/>
+  </rule>
+  <rule name="dbox"/>
+  <rule name="ubox" weight="8" max_depth="15">
+    <call rule="ubox" count="1" transforms="ty 1 rx -2.9"/>
+    <call rule="sbox"/>
+  </rule>
+  <rule name="ubox"/>
+  <rule name="sbox">
+    <instance shape="box" count="1" transforms="s 1.2 1.2 0.6 ry 5"/>
+  </rule>
+</rules>

@@ -20,6 +20,13 @@ from lark.visitors import Interpreter, v_args
 parser = Lark.open("eisenscript.lark", rel_to=__file__)
 
 
+def translate(es_str):
+    es_str = pre_process_es(es_str)
+    test = parser.parse(es_str)
+    xml_str = Iesxml().convert(test)
+    return xml_str
+
+
 def pre_process_es(es_text):
     """simple text substitution of #define"""
     es_lines = es_text.splitlines()
@@ -92,32 +99,42 @@ class Iesxml(Interpreter):
         data = [{'count': '1', 'tgroup': 'tx 1', 'rname': 'r1}]
         """
         data = self.visit_children(tree)
-        rname = data[-1]
-        data = data[:-1]
-        # make the last loop rname and create names for any previous extra loops
-        data[-1]["rname"] = rname
-        for i, loop_dict in enumerate(data[:-1]):
-            loop_dict["rname"] = f"{rname}_{i:02}"
+        if len(data) == 1:
+            # bare rule call
+            rname = data[0]
+            bare = True
+
+        else:
+            rname = data[-1]
+            data = data[:-1]
+            bare = False
+
+            # make the last loop rname and create names for any previous extra loops
+            data[-1]["rname"] = rname
+            for i, loop_dict in enumerate(data[:-1]):
+                loop_dict["rname"] = f"{rname}_{i:02}"
+            rname = data[0]["rname"]
 
         # the first loop is a call within the current rule
         if rname in ["box", "grid", "sphere", "line", "dot", "mesh"]:
             call = et.SubElement(self.active, "instance")
-            call.set("shape", data[0]["rname"])
+            call.set("shape", rname)
         else:
             call = et.SubElement(self.active, "call")
-            call.set("rule", data[0]["rname"])
+            call.set("rule", rname)
 
-        call.set("count", data[0]["count"])
-        call.set("transforms", data[0]["tgroup"])
+        if not bare:
+            call.set("count", data[0]["count"])
+            call.set("transforms", data[0]["tgroup"])
 
-        # subsequent loops are converted to rules with a single call to the next rule
-        for i, loop_dict in enumerate(data[1:]):
-            self.active = et.SubElement(self.xmltree, "rule")
-            self.active.set("name", data[i]["rname"])
-            call = et.SubElement(self.active, "call")
-            call.set("rule", loop_dict["rname"])
-            call.set("count", loop_dict["count"])
-            call.set("transforms", loop_dict["tgroup"])
+            # subsequent loops are converted to rules with a single call to the next rule
+            for i, loop_dict in enumerate(data[1:]):
+                self.active = et.SubElement(self.xmltree, "rule")
+                self.active.set("name", data[i]["rname"])
+                call = et.SubElement(self.active, "call")
+                call.set("rule", loop_dict["rname"])
+                call.set("count", loop_dict["count"])
+                call.set("transforms", loop_dict["tgroup"])
 
     def transgroup(self, tree):
         # joins all the transforms inside {} into a string

@@ -6,7 +6,7 @@
 main: setblock? entry setblock? ruledef+ setblock? 
 entry: call+			
 call: loop*  rn 
-loop:  count? transgroup?
+loop:  count? transgroup
 transgroup : "{" trans+ "}"
 count: NUMBER "*"                                             -> repeat               
 trans: _transc | _transv  

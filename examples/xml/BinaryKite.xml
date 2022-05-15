@@ -4,33 +4,30 @@
     <call rule="r1_00" count="10" transforms="ty 1"/>
   </rule>
   <rule name="r1_00">
-    <call rule="r1_01" count="1" transforms="10"/>
+    <call rule="r1_01" count="10" transforms="tz 1"/>
   </rule>
   <rule name="r1_01">
-    <call rule="r1_02" count="1" transforms="tz 1"/>
-  </rule>
-  <rule name="r1_02">
     <call rule="r1" count="1" transforms=""/>
   </rule>
   <rule name="r1">
     <call rule="r1" count="1" transforms="tx 1 ry 4"/>
-    <call rule="xbox" count="1" transforms=""/>
+    <call rule="xbox"/>
   </rule>
   <rule name="r1">
     <call rule="r1" count="1" transforms="tx 1 ry -4"/>
-    <call rule="xbox" count="1" transforms=""/>
+    <call rule="xbox"/>
   </rule>
   <rule name="r1">
     <call rule="r1" count="1" transforms="tx 1 rz -8 sa 0.95"/>
-    <call rule="xbox" count="1" transforms=""/>
+    <call rule="xbox"/>
   </rule>
   <rule name="r1">
     <call rule="r1" count="1" transforms="tx 1 rz 8 sa 0.95"/>
-    <call rule="xbox" count="1" transforms=""/>
+    <call rule="xbox"/>
   </rule>
   <rule name="r2" max_depth="36">
     <call rule="r2" count="1" transforms="ry 1 ry -13 tx 1.2"/>
-    <call rule="xbox" count="1" transforms=""/>
+    <call rule="xbox"/>
   </rule>
   <rule name="xbox">
     <instance shape="grid" count="1" transforms="sa 1.1"/>

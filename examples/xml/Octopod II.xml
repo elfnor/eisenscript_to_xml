@@ -4,12 +4,9 @@
     <call rule="r1_00" count="10" transforms="ry 36"/>
   </rule>
   <rule name="r1_00">
-    <call rule="r1_01" count="1" transforms="30"/>
+    <call rule="r1_01" count="30" transforms="ry 10"/>
   </rule>
   <rule name="r1_01">
-    <call rule="r1_02" count="1" transforms="ry 10"/>
-  </rule>
-  <rule name="r1_02">
     <call rule="r1" count="1" transforms=""/>
   </rule>
   <rule name="r1" weight="20">

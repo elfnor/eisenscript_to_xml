@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <rules max_depth="400">
   <rule name="entry">
-    <call rule="r0" count="1" transforms=""/>
+    <call rule="r0"/>
   </rule>
   <rule name="r0">
     <call rule="R1" count="3" transforms="rz 120"/>
