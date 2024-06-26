@@ -1,18 +1,29 @@
-[tool.poetry]
+[project]
 name = "eisenscript_to_xml"
 version = "0.1.0"
-description = ""
-authors = ["elfnor <elfnor@gmail.com>"]
+description = "translate eisenscript to xml format used in Sverchok"
+authors = [{name = "elfnor",email = "elfnor@gmail.com"}]
+readme = "README.md"
+dependencies = [
+    "lark>=1.1.9",
+]
+requires-python = ">=3.8,<4.0"
 
-[tool.poetry.dependencies]
-python = "3.8.10"
-ipykernel = "^6.9.2"
-lark = "^1.1.2"
-euclid = {git = "https://github.com/r1chardj0n3s/euclid.git"}
 
-[tool.poetry.dev-dependencies]
-pytest = "^5.2"
+[tool.rye]
+managed = true
+dev-dependencies = [
+    "pytest>=8.2.2",
+    "euclid @ git+https://github.com/r1chardj0n3s/euclid",
+]
+
+[tool.hatch]
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["eisenscript_to_xml/lark_inter"]
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
